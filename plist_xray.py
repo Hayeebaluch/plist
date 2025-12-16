@@ -461,19 +461,23 @@ class ContentScanner:
                         dt = datetime.fromtimestamp(ts_32, tz=timezone.utc)
                         timestamps.append(f"Unix: {dt.isoformat()} (offset: {i})")
                     
-                    # Try as Apple epoch timestamp
+                    # Try as Apple epoch timestamp (32-bit)
                     apple_ts = ts_32 + APPLE_EPOCH
                     if 946684800 < apple_ts < 2147483647:
                         dt = datetime.fromtimestamp(apple_ts, tz=timezone.utc)
                         timestamps.append(f"Apple: {dt.isoformat()} (offset: {i})")
                     
-                    # Try as 64-bit timestamp
+                    # Try as 64-bit timestamp (milliseconds or microseconds)
                     if i <= len(data) - 8:
                         ts_64 = struct.unpack('<Q', data[i:i+8])[0]
-                        # Limit to reasonable range for Unix timestamps
+                        # Check for seconds (year 2000 to ~2286)
                         if 946684800 < ts_64 < 10000000000:
                             dt = datetime.fromtimestamp(ts_64, tz=timezone.utc)
                             timestamps.append(f"Unix64: {dt.isoformat()} (offset: {i})")
+                        # Check for milliseconds (year 2000 to ~2286)
+                        elif 946684800000 < ts_64 < 10000000000000:
+                            dt = datetime.fromtimestamp(ts_64 / 1000.0, tz=timezone.utc)
+                            timestamps.append(f"Unix64_ms: {dt.isoformat()} (offset: {i})")
                 except:
                     pass
         
