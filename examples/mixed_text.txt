@@ -1,0 +1,22 @@
+
+Application Configuration File
+================================
+
+Bundle ID: com.instagram.app
+Version: 2.1.0
+User: user@example.com
+Phone: +1-555-987-6543
+
+API Endpoints:
+- https://api.instagram.com/v1/users
+- https://api.instagram.com/v1/media
+
+UUID: 6ba7b810-9dad-11d1-80b4-00c04fd430c8
+Session Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
+
+Timestamps:
+- Created: 1702771200 (Unix)
+- Modified: 1702857600 (Unix)
+
+WhatsApp Contact: +44-20-1234-5678
+    

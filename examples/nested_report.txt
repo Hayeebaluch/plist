@@ -1,0 +1,113 @@
+================================================================================
+PLIST X-RAY FORENSIC ANALYSIS REPORT
+================================================================================
+
+Source File: examples/nested_complex.bin
+Analysis Time: 2025-12-16T21:52:28.513358+00:00
+Total Artifacts: 4
+Unique Artifacts: 4
+Maximum Depth: 3
+
+--------------------------------------------------------------------------------
+STATISTICS
+--------------------------------------------------------------------------------
+Total Bytes Processed: 557
+
+Format Distribution:
+  json: 2
+  gzip: 1
+  base64: 1
+
+Depth Distribution:
+  Depth 0: 1 artifacts
+  Depth 1: 1 artifacts
+  Depth 2: 1 artifacts
+  Depth 3: 1 artifacts
+
+Decode Methods Used:
+  json_parse: 2
+  gzip: 1
+  base64: 1
+
+--------------------------------------------------------------------------------
+ARTIFACTS SUMMARY
+--------------------------------------------------------------------------------
+Total unique artifacts discovered: 4
+
+Depth 0 (1 artifacts):
+  - ID: artifact_000000
+    Hash: b0be610385bfb3f9...
+    Type: gzip
+    Size: 161 bytes
+    Entropy: 6.78
+    Classification: compressed_likely
+    Decode Chain: original_file
+    Findings:
+      timestamps: 20 found
+        • Apple: 2014-07-06T09:37:25+00:00 (offset: 104)
+        • Apple: 2033-11-06T08:35:59+00:00 (offset: 84)
+        • Apple: 2009-03-27T11:01:53+00:00 (offset: 68)
+        ... and 17 more
+
+Depth 1 (1 artifacts):
+  - ID: artifact_000001
+    Hash: f685d0411eb84edb...
+    Type: base64
+    Size: 156 bytes
+    Entropy: 5.43
+    Classification: structured_binary
+    Decode Chain: original_file → gzip
+    Findings:
+      timestamps: 20 found
+        • Apple: 2027-03-17T08:18:45+00:00 (offset: 0)
+        • Apple: 2029-11-11T09:05:30+00:00 (offset: 124)
+        • Unix: 2024-12-28T03:02:33+00:00 (offset: 8)
+        ... and 17 more
+
+Depth 2 (1 artifacts):
+  - ID: artifact_000002
+    Hash: 95ac9edb7e12d95c...
+    Type: json
+    Size: 115 bytes
+    Entropy: 4.79
+    Classification: text_like
+    Decode Chain: original_file → gzip → base64
+    Findings:
+      emails: 1 found
+        • john@example.com
+      timestamps: 20 found
+        • Unix: 2029-04-03T03:38:08+00:00 (offset: 28)
+        • Unix: 2031-05-15T12:48:34+00:00 (offset: 60)
+        • Apple: 2027-09-08T13:02:29+00:00 (offset: 80)
+        ... and 17 more
+      interesting_strings: 4 found
+        • "token":
+        • "instagram_id":
+        • {"user": "john@example.com", "token": "secret_token_12345", "instagram_id": "@user123", "phone": "+1-555-123-4567"}
+        ... and 1 more
+
+Depth 3 (1 artifacts):
+  - ID: artifact_000003
+    Hash: bdc26c827fe1caeb...
+    Type: json
+    Size: 125 bytes
+    Entropy: 4.80
+    Classification: text_like
+    Decode Chain: original_file → gzip → base64 → json_parse
+    Findings:
+      emails: 1 found
+        • john@example.com
+      timestamps: 20 found
+        • Unix: 2027-08-26T19:09:21+00:00 (offset: 20)
+        • Unix: 2031-11-14T08:52:53+00:00 (offset: 48)
+        • Apple: 2019-02-22T14:09:38+00:00 (offset: 40)
+        ... and 17 more
+      interesting_strings: 5 found
+        •   "instagram_id": "@user123",
+        • "token":
+        •   "token": "secret_token_12345",
+        ... and 2 more
+
+================================================================================
+END OF REPORT
+================================================================================
