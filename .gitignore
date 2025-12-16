@@ -42,6 +42,7 @@ Thumbs.db
 /*.md
 !README.md
 !README_PLIST_XRAY.md
+!USAGE_GUIDE.md
 
 # Temporary files
 /tmp/
