@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bundle_id</key>
+	<string>com.apple.testapp</string>
+	<key>name</key>
+	<string>Test App</string>
+	<key>timestamp</key>
+	<integer>1702771200</integer>
+	<key>urls</key>
+	<array>
+		<string>https://apple.com</string>
+		<string>https://example.com/api</string>
+	</array>
+	<key>uuid</key>
+	<string>550e8400-e29b-41d4-a716-446655440000</string>
+	<key>version</key>
+	<string>1.0.0</string>
+</dict>
+</plist>

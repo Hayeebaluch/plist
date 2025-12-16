@@ -1,0 +1,86 @@
+{
+  "source_file": "examples/mixed_text.txt",
+  "analysis_timestamp": "2025-12-16T21:52:42.601144+00:00",
+  "total_artifacts": 1,
+  "unique_artifacts": 1,
+  "max_depth_reached": 0,
+  "artifacts": [
+    {
+      "artifact_id": "artifact_000000",
+      "parent_id": null,
+      "depth": 0,
+      "decode_chain": [
+        "original_file"
+      ],
+      "content_hash": "b39da38bb0340db14d292306c22b431e0b12d648d1e2554931c863297d27c65e",
+      "format_type": "text",
+      "classification": "structured_binary",
+      "size": 454,
+      "entropy": 5.388417900875189,
+      "preview": "\nApplication Configuration File\n================================\n\nBundle ID: com.instagram.app\nVersion: 2.1.0\nUser: user@example.com\nPhone: +1-555-987-6543\n\nAPI Endpoints:\n- https://api.instagram.com/v1/users\n- https://api.instagram.com/v1/media\n\nUUID: 6ba7b810-9dad-11d1-80b4-00c04fd430c8\nSession Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9\n\nTimestamps:\n- Created: 1702771200 (Unix)\n- Modified: 1702857600 (Unix)\n\nWhatsApp Contact: +44-20-1234-5678\n    ",
+      "metadata": {},
+      "findings": {
+        "urls": [
+          "https://api.instagram.com/v1/users",
+          "https://api.instagram.com/v1/media"
+        ],
+        "emails": [
+          "user@example.com"
+        ],
+        "uuids": [
+          "6ba7b810-9dad-11d1-80b4-00c04fd430c8"
+        ],
+        "ios_bundles": [
+          "com.instagram.app"
+        ],
+        "timestamps": [
+          "Apple: 2026-02-03T00:17:51+00:00 (offset: 236)",
+          "Apple: 2018-04-01T01:41:21+00:00 (offset: 420)",
+          "Unix: 2021-10-10T22:30:04+00:00 (offset: 4)",
+          "Apple: 2031-05-26T14:14:13+00:00 (offset: 144)",
+          "Unix: 2028-09-17T09:20:52+00:00 (offset: 8)",
+          "Apple: 2032-01-29T18:22:25+00:00 (offset: 428)",
+          "Unix: 2022-09-25T10:40:45+00:00 (offset: 276)",
+          "Unix: 2026-01-13T15:48:52+00:00 (offset: 388)",
+          "Unix: 2023-12-07T22:11:44+00:00 (offset: 356)",
+          "Unix: 2026-01-24T06:06:42+00:00 (offset: 20)",
+          "Apple: 2033-07-23T11:25:49+00:00 (offset: 44)",
+          "Unix: 2001-01-28T01:05:56+00:00 (offset: 176)",
+          "Unix: 2031-11-25T17:34:59+00:00 (offset: 424)",
+          "Apple: 2033-07-23T11:25:49+00:00 (offset: 32)",
+          "Unix: 2008-12-13T07:24:37+00:00 (offset: 328)",
+          "Unix: 2031-05-15T12:48:46+00:00 (offset: 80)",
+          "Unix: 2031-11-20T22:43:57+00:00 (offset: 172)",
+          "Unix: 2023-12-03T12:11:25+00:00 (offset: 124)",
+          "Apple: 2032-01-25T05:17:31+00:00 (offset: 300)",
+          "Unix: 2023-05-18T00:42:09+00:00 (offset: 360)"
+        ],
+        "interesting_strings": [
+          "Token:",
+          "WhatsApp Contact: +44-20-1234-5678",
+          "Session",
+          "- https://api.instagram.com/v1/users",
+          "Bundle ID: com.instagram.app",
+          "https://api.instagram.com/v1/media",
+          "WhatsApp",
+          "com.instagram.app",
+          "- https://api.instagram.com/v1/media",
+          "https://api.instagram.com/v1/users",
+          "Session Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9"
+        ]
+      },
+      "timestamp": "2025-12-16T21:52:42.601069+00:00"
+    }
+  ],
+  "statistics": {
+    "total_bytes_processed": 454,
+    "format_counts": {
+      "text": 1
+    },
+    "depth_histogram": {
+      "0": 1
+    },
+    "decode_methods": {}
+  },
+  "warnings": []
+}
