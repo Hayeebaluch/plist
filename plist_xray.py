@@ -267,7 +267,8 @@ class FormatDetector:
         # Check for zlib (no magic bytes, need to try decompression)
         try:
             if len(data) > 2:
-                zlib.decompress(data, 0, 100)
+                # Try standard zlib decompression
+                zlib.decompress(data[:100])
                 return FormatType.ZLIB
         except:
             pass
@@ -313,13 +314,17 @@ class FormatDetector:
         except:
             return False
     
+    # Character sets for efficient membership testing
+    _BASE64_CHARS = frozenset('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=\n\r\t ')
+    _HEX_CHARS = frozenset('0123456789abcdefABCDEF\n\r\t ')
+    
     @staticmethod
     def _is_base64(data: bytes) -> bool:
         """Heuristically check if data is base64 encoded"""
         try:
             text = data.decode('ascii', errors='strict')
             # Base64 should be printable ASCII with specific charset
-            if not all(c in 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=\n\r\t ' for c in text):
+            if not all(c in FormatDetector._BASE64_CHARS for c in text):
                 return False
             # Try to decode
             cleaned = text.replace('\n', '').replace('\r', '').replace(' ', '').replace('\t', '')
@@ -336,7 +341,7 @@ class FormatDetector:
         """Check if data is hex encoded"""
         try:
             text = data.decode('ascii', errors='strict')
-            if not all(c in '0123456789abcdefABCDEF\n\r\t ' for c in text):
+            if not all(c in FormatDetector._HEX_CHARS for c in text):
                 return False
             cleaned = text.replace('\n', '').replace('\r', '').replace(' ', '').replace('\t', '')
             if len(cleaned) >= 32 and len(cleaned) % 2 == 0:
@@ -465,10 +470,10 @@ class ContentScanner:
                     # Try as 64-bit timestamp
                     if i <= len(data) - 8:
                         ts_64 = struct.unpack('<Q', data[i:i+8])[0]
-                        if ts_64 < 10000000000:  # Reasonable range
-                            if 946684800 < ts_64 < 2147483647:
-                                dt = datetime.fromtimestamp(ts_64, tz=timezone.utc)
-                                timestamps.append(f"Unix64: {dt.isoformat()} (offset: {i})")
+                        # Limit to reasonable range for Unix timestamps
+                        if 946684800 < ts_64 < 10000000000:
+                            dt = datetime.fromtimestamp(ts_64, tz=timezone.utc)
+                            timestamps.append(f"Unix64: {dt.isoformat()} (offset: {i})")
                 except:
                     pass
         
